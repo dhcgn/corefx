@@ -69,11 +69,7 @@ namespace System.Security.Cryptography.Xml
                             {
                                 prefix = attrib.LocalName;
                                 namespaceURI = attrib.Value;
-                                if (prefix == null)
-                                {
-                                    prefix = elem.Prefix;
-                                    namespaceURI = elem.NamespaceURI;
-                                }
+
                                 _nsm.AddNamespace(prefix, namespaceURI);
                             }
                         }

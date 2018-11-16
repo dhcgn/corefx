@@ -277,14 +277,11 @@ namespace System.Security.Cryptography.Xml
                 XmlNode rootNode = (XmlNode)elementList[index];
                 // Add the children nodes
                 XmlNodeList childNodes = rootNode.ChildNodes;
-                if (childNodes != null)
+                foreach (XmlNode node1 in childNodes)
                 {
-                    foreach (XmlNode node1 in childNodes)
+                    if (includeComments || (!(node1 is XmlComment)))
                     {
-                        if (includeComments || (!(node1 is XmlComment)))
-                        {
-                            elementList.Add(node1);
-                        }
+                        elementList.Add(node1);
                     }
                 }
                 // Add the attribute nodes
@@ -513,9 +510,6 @@ namespace System.Security.Cryptography.Xml
 
             CanonicalXmlNodeList namespaces = new CanonicalXmlNodeList();
             XmlNode ancestorNode = elem;
-
-            if (ancestorNode == null) return null;
-
             bool bDefNamespaceToAdd = true;
 
             while (ancestorNode != null)
